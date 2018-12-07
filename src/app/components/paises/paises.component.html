@@ -1,0 +1,20 @@
+<h1>Paises</h1>
+
+<select>
+  <option value="">Seleccione...</option>
+  <option [value]="pais.name" *ngFor="let pais of paises" (click)="seleccionarPais(pais.name)">
+    {{ pais.name }}
+  </option>
+</select>
+
+<br>
+
+<div *ngIf="resultado">
+    <p><b>Capital:</b> {{ pais.capital }}</p>
+    <p><b>Moneda:</b> {{ pais.currencies[0].name }}</p>
+    <p><b>Lenguajes:</b></p>
+    <ul>
+        <li *ngFor="let lenguaje of pais.languages">{{ lenguaje.name }}</li>
+    </ul>
+    <p><b>Población:</b> {{ pais.population }}</p>
+</div>
