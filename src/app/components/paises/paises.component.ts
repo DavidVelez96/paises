@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PaisesService } from '../../services/paises.service';
+import { Router } from '@angular/router';
+
+// service
+import { PaisesService } from '../../services/paises/paises.service';
 
 @Component({
   selector: 'app-paises',
@@ -12,7 +15,10 @@ export class PaisesComponent implements OnInit {
   public paisSeleccionado: string;
   public resultado: boolean;
 
-  constructor(private paisesService: PaisesService) {
+  constructor(
+    private paisesService: PaisesService,
+    private _router: Router
+  ) {
     this.paisSeleccionado = '';
     this.resultado = false;
   }
@@ -33,6 +39,11 @@ export class PaisesComponent implements OnInit {
       this.pais = data[0];
       this.resultado = true;
     });
+  }
+
+  public logOut(): void {
+    localStorage.removeItem('token');
+    this._router.navigate(['/inicio']);
   }
 
 }
